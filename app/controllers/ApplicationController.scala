@@ -251,6 +251,19 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Sessi
     }
   }
 
+  def test = UserAwareAction.async { implicit request =>
+    request.identity match {
+      case Some(user) =>
+        val now = new DateTime(DateTimeZone.UTC)
+        val timestamp: Timestamp = new Timestamp(now.getMillis)
+        val ipAddress: String = request.remoteAddress
+
+        WebpageActivityTable.save(WebpageActivity(0, user.userId.toString, ipAddress, "Visit_Map", timestamp))
+        Future.successful(Ok(views.html.sidewalkDetect("Project Sidewalk - Explore Accessibility", Some(user))))
+      case None =>
+        Future.successful(Redirect("/anonSignUp?url=/test"))
+    }
+  }
   /**
     * Returns a page that tells Turkers that there are no further missions for them to complete at this time.
     *
