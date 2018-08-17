@@ -4,7 +4,7 @@ import scalariform.formatter.preferences._
 
 name := """sidewalk-webpage"""
 
-version := "4.5.0"
+version := "4.6.0"
 
 scalaVersion := "2.10.4"
 
@@ -18,6 +18,7 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 
 resolvers ++= Seq(
   "geosolutions" at "http://maven.geo-solutions.it/",
+  "boundlessgeo" at "https://repo.boundlessgeo.com/main/org/",
   "osgeo" at "http://download.osgeo.org/webdav/geotools/"
 )
 
@@ -41,11 +42,17 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api"       % "1.7.7",
   "org.slf4j" % "jcl-over-slf4j"  % "1.7.7",
   "joda-time" % "joda-time" % "2.9.4",
+  "javax.media" % "jai_core" % "1.1.3" from "http://maven.geomajas.org/nexus/content/groups/public/javax/media/jai-core/1.1.3",
+  "javax.media" % "jai_codec" % "1.1.3" from "http://maven.geomajas.org/nexus/content/groups/public/javax/media/jai_codec/1.1.3",
+  "javax.media" % "jai_imageio" % "1.1" from "http://maven.geomajas.org/nexus/content/groups/public/javax/media/jai_imageio/1.1",
   "org.geotools" % "gt-coverage" % "14.3",
   "org.geotools" % "gt-epsg-hsql" % "14.3",
   "org.geotools" % "gt-geotiff" % "14.3",
   "org.geotools" % "gt-main" % "14.3",
-  "org.geotools" % "gt-referencing" % "14.3"
+  "org.geotools" % "gt-referencing" % "14.3" excludeAll(
+  	ExclusionRule(organization = "javax.media"),
+	  ExclusionRule(organization = "jgridshift")
+  )
 ).map(_.force())
 
 libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-jdk14")) }
