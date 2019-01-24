@@ -4,6 +4,7 @@ import java.sql.Timestamp
 import java.util.UUID
 import java.util.Calendar
 import java.text.SimpleDateFormat
+import scala.concurrent.duration._
 
 import org.geotools.geometry.jts.JTS
 import org.geotools.referencing.CRS
@@ -17,6 +18,7 @@ import models.user.RoleTable
 import models.utils.MyPostgresDriver
 import models.utils.MyPostgresDriver.simple._
 import org.postgresql.util.PSQLException
+import play.api.cache.Cache
 import play.api.Play.current
 
 import scala.slick.jdbc.{GetResult, StaticQuery => Q}
@@ -125,7 +127,7 @@ object StreetEdgeTable {
   def countTotalStreets(): Int = db.withSession { implicit session =>
     all.size
   }
-  
+
   /**
     * This method returns the audit completion rate for the specified group of users.
     *
@@ -151,9 +153,6 @@ object StreetEdgeTable {
     auditedDistance / totalDistance
   }
 
-  var resultT = 0.0f
-  var isCachedT = false
-
   /**
     * Get the total distance in miles
     * Reference: http://gis.stackexchange.com/questions/143436/how-do-i-calculate-st-length-in-miles
@@ -161,33 +160,14 @@ object StreetEdgeTable {
     * @return
     */
   def totalStreetDistance(): Float = db.withSession { implicit session =>
-    if(isCachedT) {
-      return resultT
-    }
-
-    println("totalStreetDistance")
-    time {
+    Cache.getOrElse("totalStreetDistance()", 10.minutes.toSeconds.toInt) {
       // DISTINCT query: http://stackoverflow.com/questions/18256768/select-distinct-in-scala-slick
 
       // get length of each street segment, sum the lengths, and convert from meters to miles
       val distances: List[Float] = streetEdgesWithoutDeleted.groupBy(x => x).map(_._1.geom.transform(26918).length).list
-      resultT = (distances.sum * 0.000621371).toFloat
-      isCachedT = true
-      resultT
+      (distances.sum * 0.000621371).toFloat
     }
-
   }
-
-  def time[R](block: => R): R = {
-    val t0 = System.currentTimeMillis()
-    val result = block    // call-by-name
-    val t1 = System.currentTimeMillis()
-    println("Elapsed time: " + (t1 - t0) + "ms")
-    result
-  }
-
-  var result = 0.0f
-  var isCached = false
 
   /**
     * Get the audited distance in miles
@@ -197,12 +177,9 @@ object StreetEdgeTable {
     * @return
     */
   def auditedStreetDistance(auditCount: Int, userType: String = "All"): Float = db.withSession { implicit session =>
-    if(isCached) {
-      return result
-    }
+    val cacheKey = s"auditedStreetDistance($auditCount, $userType)"
 
-    println("yawt")
-    time {
+    Cache.getOrElse(cacheKey, 10.minutes.toSeconds.toInt) {
       val auditTaskQuery = userType match {
         case "All" => completedAuditTasks
         case "Researcher" => researcherCompletedAuditTasks
@@ -224,9 +201,7 @@ object StreetEdgeTable {
 
       // Get length of each street segment, sum the lengths, and convert from meters to miles
       val distances: List[Float] = edgesWithAuditCounts.filter(_._2 >= auditCount).map(_._1).list
-      result = (distances.sum * 0.000621371).toFloat
-      isCached = true
-      result
+      (distances.sum * 0.000621371).toFloat
     }
   }
 
