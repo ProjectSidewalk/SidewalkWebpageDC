@@ -1,6 +1,7 @@
 package models.user
 
 import java.util.UUID
+import scala.io.Source
 
 import models.utils.MyPostgresDriver.simple._
 import play.api.Play.current
@@ -31,6 +32,19 @@ object WebpageActivityTable {
         (activities returning activities.map(_.webpageActivityId)) += activity
       webpageActivityId
     }
+  }
+
+  /**
+    * Reads in Google Maps API key from google_maps_api_key.txt (ask Mikey Saugstad for the file if you don't have it)
+    *
+    * @return
+    */
+  def getGoogleMapsAPIKey(): String = {
+    val bufferedSource = Source.fromFile("google_maps_api_key.txt")
+    val lines = bufferedSource.getLines()
+    val key: String = lines.next()
+    bufferedSource.close
+    key
   }
 
   /**
