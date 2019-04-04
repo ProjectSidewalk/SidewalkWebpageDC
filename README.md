@@ -6,10 +6,11 @@ The Project Sidewalk webpage.
 ### Setting up the development environment
 Set up the development environment for Scala, JavaScript and Postgres. The detailed instructions for each software component and more on server management instructions are provided [here](https://github.com/ProjectSidewalk/Instructions). You can start off using the steps below:
 
-1. Install JDK 7 (or above), Scala, and `activator` on your computer. See detailed [instructions for installing Scala environment here](https://github.com/ProjectSidewalk/Instructions#java--scala).
-2. Install Node.js. See detailed [instructions here](https://github.com/ProjectSidewalk/Instructions#javascript).
-3. On the top directory, run `npm install` to install all the JavaScript dependencies.
-4. Set up the Postgres database by folloing the tutorial. See detailed [instructions on installing the Postgres database here.](https://github.com/ProjectSidewalk/Instructions#postgresql)
+1. Email Mikey (michaelssaugstad@gmail.com) and ask for the two API key files and a database dump. You will put the API key files into the root directory of the project. You will need the database dump later on. You can continue with the rest of the instructions here, but the website will not work fully until you've received these three files from Mikey.
+2. Install JDK 7 (or above), Scala, and `activator` on your computer. See detailed [instructions for installing Scala environment here](https://github.com/ProjectSidewalk/Instructions#java--scala).
+3. Install Node.js. See detailed [instructions here](https://github.com/ProjectSidewalk/Instructions#javascript).
+4. On the top directory, run `npm install` to install all the JavaScript dependencies.
+5. Set up the Postgres database by folloing the tutorial. See detailed [instructions on installing the Postgres database here.](https://github.com/ProjectSidewalk/Instructions#postgresql)
 
 ### Running the Application Locally
 To run the web server locally,
