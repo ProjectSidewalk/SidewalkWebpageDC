@@ -244,6 +244,10 @@ $(document).ready(function () {
 
                 $("#navbar-dropdown-list").html(htmlString);
                 var path = window.location.pathname;
+
+                // Toggle the sign-in modal
+                $('#sign-in-modal-container').modal('toggle');
+
                 if(path.includes("/audit") && svl) {
                     svl.user.setProperty('username', data.username);
 
@@ -275,8 +279,6 @@ $(document).ready(function () {
                     var adminLi = '<li role="presentation"><a href="@routes.AdminController.index" role="menuitem">Admin</a></li>';
                     $('#nav-user-menu').children('#dashboard-link').after(adminLi);
                 }
-
-                $('#sign-in-modal-container').modal('toggle');
             }
 
 
@@ -323,10 +325,17 @@ $(document).ready(function () {
                 var data = $(this).serialize();
 
                 var url = '/authapi/authenticate';
-                $.post(url, data, handleSignIn).fail(function(e){
-                    invalidSignInUpAlert(true, 'Something went wrong processing your request. Please make sure all your information is correct and then try again');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function() {
+                        document.location.reload();
+                    },
+                    error: function() {
+                        invalidSignInUpAlert(true, 'Something went wrong processing your request. Please make sure all your information is correct and then try again');
+                    }
                 });
-                return false;
             });
 
             $('#sign-up-form').submit(function () {
