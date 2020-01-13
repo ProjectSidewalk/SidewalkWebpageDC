@@ -305,7 +305,7 @@ $(document).ready(function () {
                 }
             }
 
-            // Intercept form-based sign in and use AJAX to signin so the page does not refresh.
+            // Handle sign-in event and refresh the webpage.
             $('#sign-in-form').submit(function () {
                 var formData = $('#sign-in-form :input');
                 var email = formData[0].value;
