@@ -6,7 +6,7 @@ name := """sidewalk-webpage"""
 
 version := "4.6.1"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.10.5"
 
 sources in (Compile,doc) := Seq.empty
 
