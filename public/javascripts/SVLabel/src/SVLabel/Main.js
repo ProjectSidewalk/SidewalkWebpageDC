@@ -370,6 +370,7 @@ function Main (params) {
     }
 
     function startTheMission(mission, neighborhood) {
+        document.getElementById("google-maps-holder").style.backgroundColor = "#e5e3df";
         // Check if this an anonymous user or not.
         // If not, record that that this user has completed the onboarding.
         if (!isAnAnonymousUser()) {

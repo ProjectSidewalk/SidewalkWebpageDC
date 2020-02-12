@@ -1,7 +1,7 @@
 function OnboardingStates (compass, mapService, statusModel, tracker) {
     var numStates = 37;
-    var panoId = "stxXyCKAbd73DmkM2vsIHA";
-    var afterWalkPanoId = "PTHUzZqpLdS1nTixJMoDSw";
+    var panoId = "tutorial";
+    var afterWalkPanoId = "afterWalkTutorial";
     var headingRanges = {
         "stage-1": [250, 262],
         "stage-2-adjust": [200, 262],
@@ -21,8 +21,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 "heading": 262,
                 "pitch": -6,
                 "zoom": 1,
-                "lat": 38.94042608,
-                "lng": -77.06766133,
+                "lat": 38.9404982935884,
+                "lng": -77.06762207994893,
                 "name": "initialize",
                 "maxLabelCount": 0
             },
@@ -68,8 +68,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "name": "arrow-1a",
                     "type": "arrow",
-                    "x": 9710,
-                    "y": -325,
+                    "x": 9730,
+                    "y": -350,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -88,8 +88,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 9710,
-                "imageY": -325,
+                "imageX": 9730,
+                "imageY": -350,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-1"][0],
                 "maxHeading": headingRanges["stage-1"][1],
@@ -106,8 +106,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "name": "arrow-1b",
                     "type": "arrow",
-                    "x": 9710,
-                    "y": -325,
+                    "x": 9730,
+                    "y": -350,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -248,8 +248,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 8140,
-                    "y": -300,
+                    "x": 8180,
+                    "y": -340,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -269,8 +269,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 8140,
-                "imageY": -300,
+                "imageX": 8180,
+                "imageY": -340,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-2"][0],
                 "maxHeading": headingRanges["stage-2"][1],
@@ -285,8 +285,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 8140,
-                    "y": -300,
+                    "x": 8180,
+                    "y": -340,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -374,7 +374,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "type": "arrow",
                     "x": 7800,
-                    "y": -300,
+                    "y": -340,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -395,7 +395,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "NoCurbRamp",
                 "imageX": 7800,
-                "imageY": -300,
+                "imageY": -340,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-2"][0],
                 "maxHeading": headingRanges["stage-2"][1],
@@ -412,7 +412,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "type": "arrow",
                     "x": 7800,
-                    "y": -300,
+                    "y": -340,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -577,8 +577,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 4900,
-                    "y": -750,
+                    "x": 4920,
+                    "y": -720,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -587,8 +587,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 },
                 {
                     "type": "arrow",
-                    "x": 3850,
-                    "y": -860,
+                    "x": 3900,
+                    "y": -840,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -609,8 +609,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 4900,
-                "imageY": -750,
+                "imageX": 4920,
+                "imageY": -720,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-3"][0],
                 "maxHeading": headingRanges["stage-3"][1],
@@ -618,8 +618,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             },{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 3850,
-                "imageY": -860,
+                "imageX": 3900,
+                "imageY": -840,
                 "tolerance": 300
             }],
             "message": {
@@ -631,8 +631,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 4900,
-                    "y": -750,
+                    "x": 4920,
+                    "y": -720,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -641,8 +641,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 },
                 {
                     "type": "arrow",
-                    "x": 3850,
-                    "y": -860,
+                    "x": 3900,
+                    "y": -840,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -734,8 +734,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 3850,
-                    "y": -860,
+                    "x": 3900,
+                    "y": -840,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -755,8 +755,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 3850,
-                "imageY": -860,
+                "imageX": 3900,
+                "imageY": -840,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-3"][0],
                 "maxHeading": headingRanges["stage-3"][1],
@@ -771,8 +771,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 3850,
-                    "y": -860,
+                    "x": 3900,
+                    "y": -840,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -857,8 +857,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 4900,
-                    "y": -750,
+                    "x": 4920,
+                    "y": -720,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -879,8 +879,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 4900,
-                "imageY": -750,
+                "imageX": 4920,
+                "imageY": -720,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-3"][0],
                 "maxHeading": headingRanges["stage-3"][1],
@@ -895,8 +895,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 4900,
-                    "y": -750,
+                    "x": 4920,
+                    "y": -720,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1034,8 +1034,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 2766,
-                    "y": -550,
+                    "x": 2776,
+                    "y": -500,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1055,8 +1055,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "NoSidewalk",
-                "imageX": 2766,
-                "imageY": -550,
+                "imageX": 2776,
+                "imageY": -500,
                 "tolerance": 300,
                 "minHeading": headingRanges["stage-3"][0],
                 "maxHeading": headingRanges["stage-3"][1],
@@ -1071,8 +1071,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 2766,
-                    "y": -550,
+                    "x": 2776,
+                    "y": -500,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1129,8 +1129,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 730,
-                    "y": -690,
+                    "x": 750,
+                    "y": -670,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1150,8 +1150,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "properties": [{
                 "action": "LabelAccessibilityAttribute",
                 "labelType": "CurbRamp",
-                "imageX": 700,
-                "imageY": -690,
+                "imageX": 750,
+                "imageY": -670,
                 "tolerance": 250,
                 "minHeading": headingRanges["stage-4"][0],
                 "maxHeading": headingRanges["stage-4"][1],
@@ -1166,8 +1166,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
             "annotations": [
                 {
                     "type": "arrow",
-                    "x": 730,
-                    "y": -690,
+                    "x": 750,
+                    "y": -670,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1356,6 +1356,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 statusModel.setProgressBar(completedRate);
                 tracker.push('Onboarding_Transition', {onboardingTransition: "walk-3"});
                 mapService.setPov({heading: 330, pitch: 0, zoom: 1});
+                document.getElementById("google-maps-holder").style.backgroundImage = "url('"+ svl.rootDirectory + "img/onboarding/afterWalkTutorialMiniMap.jpg')";
                 return "walk-4";
             }
         },
@@ -1408,7 +1409,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "type": "arrow",
                     "x": 200,
-                    "y": -580,
+                    "y": -600,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1417,8 +1418,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 },
                 {
                     "type": "arrow",
-                    "x": -2510,
-                    "y": -320,
+                    "x": -2530,
+                    "y": -470,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1458,7 +1459,7 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 {
                     "type": "arrow",
                     "x": 200,
-                    "y": -580,
+                    "y": -600,
                     "length": 50,
                     "angle": 0,
                     "text": null,
@@ -1467,8 +1468,8 @@ function OnboardingStates (compass, mapService, statusModel, tracker) {
                 },
                 {
                     "type": "arrow",
-                    "x": -2510,
-                    "y": -320,
+                    "x": -2530,
+                    "y": -470,
                     "length": 50,
                     "angle": 0,
                     "text": null,
