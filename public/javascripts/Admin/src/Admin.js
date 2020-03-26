@@ -45,7 +45,7 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
     var mapboxTiles = L.tileLayer(tileUrl, {
         attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
     });
-    var map = L.mapbox.map('admin-map', "kotarohara.8e0c6890", {
+    var map = L.mapbox.map('admin-map', "mapbox.streets", {
         // set that bounding box as maxBounds to restrict moving the map
         // see full maxBounds documentation:
         // http://leafletjs.com/reference.html#map-maxbounds
@@ -58,7 +58,7 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
 
     // a grayscale tileLayer for the choropleth
     L.mapbox.accessToken = 'pk.eyJ1IjoibWlzYXVnc3RhZCIsImEiOiJjajN2dTV2Mm0wMDFsMndvMXJiZWcydDRvIn0.IXE8rQNF--HikYDjccA7Ug';
-    var choropleth = L.mapbox.map('admin-choropleth', "kotarohara.8e0c6890", {
+    var choropleth = L.mapbox.map('admin-choropleth', "mapbox.light", {
             // set that bounding box as maxBounds to restrict moving the map
             // see full maxBounds documentation:
             // http://leafletjs.com/reference.html#map-maxbounds
@@ -72,8 +72,6 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
             .fitBounds(bounds)
             .setView([38.892, -77.038], 12);
     choropleth.scrollWheelZoom.disable();
-
-    L.mapbox.styleLayer('mapbox://styles/mapbox/light-v9').addTo(choropleth);
 
     var popup = L.popup().setContent('<p>Hello world!<br />This is a nice popup.</p>');
 

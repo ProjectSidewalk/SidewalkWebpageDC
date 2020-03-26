@@ -17,7 +17,7 @@ function AdminUser(params) {
         mapboxTiles = L.tileLayer(tileUrl, {
             attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
         }),
-        map = L.mapbox.map('admin-map', "kotarohara.8e0c6890", {
+        map = L.mapbox.map('admin-map', "mapbox.streets", {
             // set that bounding box as maxBounds to restrict moving the map
             // see full maxBounds documentation:
             // http://leafletjs.com/reference.html#map-maxbounds

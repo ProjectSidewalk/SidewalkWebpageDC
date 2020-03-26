@@ -15,7 +15,7 @@ function Choropleth(_, $, turf, difficultRegionIds) {
 
 // a grayscale tileLayer for the choropleth
     L.mapbox.accessToken = 'pk.eyJ1IjoibWlzYXVnc3RhZCIsImEiOiJjajN2dTV2Mm0wMDFsMndvMXJiZWcydDRvIn0.IXE8rQNF--HikYDjccA7Ug';
-    var choropleth = L.mapbox.map('choropleth', "kotarohara.8e0c6890", {
+    var choropleth = L.mapbox.map('choropleth', "mapbox.light", {
         // set that bounding box as maxBounds to restrict moving the map
         // see full maxBounds documentation:
         // http://leafletjs.com/reference.html#map-maxbounds
@@ -31,10 +31,7 @@ function Choropleth(_, $, turf, difficultRegionIds) {
         .setView([38.892, -77.038], 12);
     choropleth.scrollWheelZoom.disable();
 
-    L.mapbox.styleLayer('mapbox://styles/mapbox/light-v9').addTo(choropleth);
-
     L.control.zoomslider().addTo(choropleth);
-
 
     /**
      * Takes a completion percentage, bins it, and returns the appropriate color for a choropleth.

@@ -14,21 +14,21 @@ $(document).ready(function () {
         });
 
     // Maps
-    var mapAccessAttributes = L.mapbox.map('developer-access-attribute-map', "kotarohara.8e0c6890", {
+    var mapAccessAttributes = L.mapbox.map('developer-access-attribute-map', "mapbox.streets", {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
         })
         .fitBounds(bounds)
         .setView([38.910, -76.984], 15);
-    var mapAccessScoreStreets = L.mapbox.map('developer-access-score-streets-map', "kotarohara.8e0c6890", {
+    var mapAccessScoreStreets = L.mapbox.map('developer-access-score-streets-map', "mapbox.streets", {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
         })
         .fitBounds(bounds)
         .setView([38.9195, -77.019], 14);
-    var mapAccesScoreNeighborhoods = L.mapbox.map('developer-access-score-neighborhoods-map', "kotarohara.8e0c6890", {
+    var mapAccesScoreNeighborhoods = L.mapbox.map('developer-access-score-neighborhoods-map', "mapbox.streets", {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
