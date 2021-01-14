@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    L.mapbox.accessToken = 'pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA';
+    L.mapbox.accessToken = 'pk.eyJ1IjoibWlzYXVnc3RhZCIsImEiOiJjajN2dTV2Mm0wMDFsMndvMXJiZWcydDRvIn0.IXE8rQNF--HikYDjccA7Ug';
 
     // Construct a bounding box for this map that the user cannot move out of
     // https://www.mapbox.com/mapbox.js/example/v1.0.0/maxbounds/
@@ -14,25 +14,28 @@ $(document).ready(function () {
         });
 
     // Maps
-    var mapAccessAttributes = L.mapbox.map('developer-access-attribute-map', "mapbox.streets", {
+    var mapAccessAttributes = L.mapbox.map('developer-access-attribute-map', null, {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
         })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
         .fitBounds(bounds)
         .setView([38.910, -76.984], 15);
-    var mapAccessScoreStreets = L.mapbox.map('developer-access-score-streets-map', "mapbox.streets", {
+    var mapAccessScoreStreets = L.mapbox.map('developer-access-score-streets-map', null, {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
         })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
         .fitBounds(bounds)
         .setView([38.9195, -77.019], 14);
-    var mapAccesScoreNeighborhoods = L.mapbox.map('developer-access-score-neighborhoods-map', "mapbox.streets", {
+    var mapAccesScoreNeighborhoods = L.mapbox.map('developer-access-score-neighborhoods-map', null, {
             maxBounds: bounds,
             maxZoom: 19,
             minZoom: 9
         })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
         .fitBounds(bounds)
         .setView([38.9195, -77.019], 14);
 
