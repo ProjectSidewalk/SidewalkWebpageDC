@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+
+  web:
+    image: projectsidewalkdc/web
+    container_name: projectsidewalk-dc-web
+    build:
+      context: ./
+    depends_on:
+      - db
+    volumes:
+      - "./:/opt/:delegated"
+      - "/opt/node_modules"
+    ports:
+      - "9000:9000"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://db:5432/sidewalk
+      - GOOGLE_MAPS_API_KEY=DUMMY_GOOGLE_API_KEY
+      - GOOGLE_MAPS_SECRET=DUMMY_GOOGLE_SECRET
+      - INTERNAL_API_KEY=DUMMY_INTERNAL_API_KEY
+
+  db:
+    image: projectsidewalkdc/db
+    container_name: projectsidewalk-dc-db
+    build:
+      context: ./db/
+    volumes:
+      - "./db/import-dump.sh:/docker-entrypoint-initdb.d/import-dump.sh"
+      - "./db:/opt"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sidewalk
