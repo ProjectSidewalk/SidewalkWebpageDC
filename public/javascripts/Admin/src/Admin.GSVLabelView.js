@@ -91,8 +91,7 @@ function AdminGSVLabel() {
         self.modalSeverity.html(labelMetadata['severity'] != null ? labelMetadata['severity'] : "No severity");
         self.modalTemporary.html(labelMetadata['temporary'] ? "True": "False");
         self.modalDescription.html(labelMetadata['description'] != null ? labelMetadata['description'] : "No description");
-        self.modalTask.html("<a href='/admin/task/"+labelMetadata['audit_task_id']+"'>"+
-            labelMetadata['audit_task_id']+"</a> by <a href='/admin/user/" + labelMetadata['username'] + "'>" +
+        self.modalTask.html(labelMetadata['audit_task_id']+" by <a href='/admin/user/" + labelMetadata['username'] + "'>" +
             labelMetadata['username'] + "</a>");
 
         self.panorama.refreshGSV();
