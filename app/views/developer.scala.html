@@ -2,13 +2,20 @@
 @(title: String, user: Option[User] = None)
 
 @main(title) {
-    @navbar(user)
     <div class="container">
-        <h1>Developer Zone</h1>
+        <h1>Project Sidewalk API</h1>
+        <h3>Notice</h3>
         <p class="text-justify">
-            <span class="bold">Hey, we need your help!</span>
-            Use the sidewalk accessibility data that we have collected to make new technologies
-            that support people with mobility impairments!
+            We have completed our pilot deployment in Washington, DC! We are no longer collecting new data in DC, but
+            the REST API will continue to be available, and you can find the API documentation on this page. If you
+            would like to contribute accessibility data, you can head to
+            <a href="https://projectsidewalk.org/">projectsidewalk.org</a> and check out all of the cities where Project
+            Sidewalk has been deployed. We will continue to make improvements to this API over time.
+        </p>
+        <h3>Overview</h3>
+        <p class="text-justify">
+            Use the sidewalk accessibility data that we have collected to make new technologies that support people with
+            mobility impairments!
         </p>
         <p class="text-justify">
             We serve our accessibility data in two formats: <span class="bold">Access Attribute and Access Score.</span> Access Attribute contains
@@ -19,7 +26,7 @@
             You can get the data through the <a data-scroll href="#access-api-header">REST APIs</a>.
                 @*or <a data-scroll href="#access-dataset">download the zip file.</a>*@
                 You can also help <a data-scroll href="#contribute">contribute</a>! The code is available on
-                <a href="https://github.com/ProjectSidewalk/SidewalkWebpage" target="_blank">github</a>.
+                <a href="https://github.com/ProjectSidewalk/SidewalkWebpageDC" target="_blank">github</a>.
         </p>
 
         <div class="row">
@@ -305,7 +312,7 @@
                 <h2>Contribute</h2>
                 <p class="text-justify">
                     All the code for Project Sidewalk is open source. You can find it in our
-                        <a href="https://github.com/ProjectSidewalk/SidewalkWebpage" target="_blank">GitHub repo</a>.
+                        <a href="https://github.com/ProjectSidewalk/SidewalkWebpageDC" target="_blank">GitHub repo</a>.
                     We welcome your help in advancing the project. If you make an enhancement or fix a bug, send a pull request!
                 </p>
             </div>
@@ -317,7 +324,7 @@
                 <p class="text-justify">
                     Questions? Bugs? Feature requests and suggestions? Or anything else? Email us
                     (<a href="mailto:sidewalk@@cs.uw.edu">sidewalk@@cs.uw.edu</a>), post a
-                    <a href="https://github.com/ProjectSidewalk/SidewalkWebpage/issues" target="_blank">GitHub issue</a>,
+                    <a href="https://github.com/ProjectSidewalk/SidewalkWebpageDC/issues" target="_blank">GitHub issue</a>,
                     or follow and talk to us on <a href="https://twitter.com/projsidewalk" target="_blank">Twitter
                         @@projsidewalk</a>!
                 </p>
@@ -328,7 +335,7 @@
             <div class="col-sm-12">
                 <h2>License</h2>
                 <p>
-                    The Project Sidewalk code is licensed under the terms of the <a href="https://github.com/ProjectSidewalk/SidewalkWebpage/blob/master/LICENSE.md">MIT License</a>.
+                    The Project Sidewalk code is licensed under the terms of the <a href="https://github.com/ProjectSidewalk/SidewalkWebpageDC/blob/master/LICENSE.md">MIT License</a>.
                 </p>
             </div>
         </div>
