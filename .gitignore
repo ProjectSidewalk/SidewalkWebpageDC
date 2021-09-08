@@ -10,6 +10,7 @@ dist/*.js
 coverage/
 *.js.html
 .mailmap
+.ivy/.sbt.cache.lock
 bower.json
 component.json
 package-lock.json

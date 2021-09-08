@@ -32,7 +32,7 @@ libraryDependencies ++= Seq(
   "com.vividsolutions" % "jts" % "1.13",
   "com.typesafe.slick" %% "slick" % "2.1.0",
   "com.typesafe.play" %% "play-slick" % "0.8.0",
-  "org.postgresql" % "postgresql" % "9.3-1102-jdbc4",
+  "org.postgresql" % "postgresql" % "9.4.1212",
   "com.mohiva" %% "play-silhouette" % "2.0.2",
   "net.codingwell" %% "scala-guice" % "4.0.0-beta5",
   "com.typesafe.play.extras" %% "play-geojson" % "1.3.1",
