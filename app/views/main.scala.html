@@ -2,7 +2,6 @@
 @import models.user.WebpageActivityTable
 @(title: String, url: Option[String] = Some("/"))(content: Html)
 
-
 @import views.html.bootstrap._
 @import com.mohiva.play.silhouette.impl.providers._
 @import views.html.bootstrap._
@@ -13,6 +12,14 @@
 
 <!DOCTYPE html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X295QKH1KY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-X295QKH1KY');
+    </script>
     <meta charset="utf-8" />
     <title>@title</title>
     <link rel="icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
