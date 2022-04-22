@@ -13,6 +13,7 @@ import formats.json.UserRoleSubmissionFormats._
 import models.attribute.{GlobalAttribute, GlobalAttributeTable}
 import models.audit.{AuditTaskInteractionTable, AuditTaskTable, InteractionWithLabel}
 import models.daos.slick.DBTableDefinitions.UserTable
+import models.gsv.GSVDataTable
 import models.label.LabelTable.LabelMetadata
 import models.label.{LabelPointTable, LabelTable, LabelTypeTable}
 import models.mission.MissionTable
@@ -22,7 +23,7 @@ import models.user.{RoleTable, User, UserRoleTable, WebpageActivityTable}
 import models.daos.UserDAOImpl
 import org.geotools.geometry.jts.JTS
 import org.geotools.referencing.CRS
-import play.api.libs.json.{JsArray, JsError, JsObject, Json}
+import play.api.libs.json.{JsArray, JsError, JsObject, JsValue, Json}
 import play.extras.geojson
 import play.api.mvc.BodyParsers
 
@@ -435,19 +436,17 @@ class AdminController @Inject() (implicit val env: Environment[User, SessionAuth
     }
   }
 
+  // Get the list of pano IDs in our database.
   def getAllPanoIds() = UserAwareAction.async { implicit request =>
-
-    val labels = LabelTable.selectLocationsOfLabels
-    val features: List[JsObject] = labels.map { label =>
-
-      val properties = Json.obj(
-        "gsv_panorama_id" -> label.gsvPanoramaId
-      )
-      Json.obj("properties" -> properties)
-    }
-    val featureCollection = Json.obj("type" -> "FeatureCollection", "features" -> features)
-    Future.successful(Ok(featureCollection))
-
+    val panos: List[(String, Option[Int], Option[Int], Option[Int], Option[Int])] = GSVDataTable.getAllPanos()
+    val json: JsValue = Json.toJson(panos.map(p => Json.obj(
+      "gsv_panorama_id" -> p._1,
+      "image_width" -> p._2,
+      "image_height" -> p._3,
+      "tile_width" -> p._4,
+      "tile_height" -> p._5
+    )))
+    Future.successful(Ok(json))
   }
 
   /**

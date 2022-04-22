@@ -46,11 +46,12 @@ GET     /adminapi/onboardingInteractions                     @controllers.AdminC
 GET     /adminapi/auditedStreets/:username                   @controllers.AdminController.getStreetsAuditedByAUser(username: String)
 GET     /adminapi/labelLocations/:username                   @controllers.AdminController.getLabelsCollectedByAUser(username: String)
 GET     /adminapi/labels/all                                 @controllers.AdminController.getAllLabels
-GET     /adminapi/labels/panoid                              @controllers.AdminController.getAllPanoIds
 GET     /adminapi/label/:labelId                             @controllers.AdminController.getLabelData(labelId: Int)
 GET     /adminapi/labelCounts/registered                     @controllers.AdminController.getAllRegisteredUserLabelCounts
 GET     /adminapi/labelCounts/anonymous                      @controllers.AdminController.getAllAnonUserLabelCounts
 GET     /adminapi/labelCounts/turker                         @controllers.AdminController.getAllTurkerUserLabelCounts
+GET     /adminapi/labels/panoid                              @controllers.AdminController.getAllPanoIds
+GET     /adminapi/panos                                      @controllers.AdminController.getAllPanoIds
 #GET     /adminapi/attributes/all                             @controllers.AdminController.getAllAttributes
 GET     /adminapi/audittimes                                 @controllers.AdminController.getAuditTimes()
 GET     /adminapi/auditTimesAnon                             @controllers.AdminController.getAnonAuditTimes()
