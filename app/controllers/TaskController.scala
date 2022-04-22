@@ -263,15 +263,16 @@ class TaskController @Inject() (implicit val env: Environment[User, SessionAuthe
           AuditTaskEnvironmentTable.save(taskEnv)
 
           // Insert Street View metadata
-          for (panorama <- data.gsvPanoramas) {
+          for (pano <- data.gsvPanoramas) {
             // Check the presence of the data
-            if (!GSVDataTable.panoramaExists(panorama.gsvPanoramaId)) {
-              val gsvData: GSVData = GSVData(panorama.gsvPanoramaId, Some(13312), Some(6656), Some(512), Some(512), Some(0.0F), Some(0.0F), panorama.imageDate, "")
+            if (!GSVDataTable.panoramaExists(pano.gsvPanoramaId)) {
+              val gsvData: GSVData = GSVData(pano.gsvPanoramaId, pano.imageWidth, pano.imageHeight, pano.tileWidth,
+                pano.tileHeight, pano.originHeading, pano.originPitch, pano.imageDate, pano.copyright)
               GSVDataTable.save(gsvData)
 
-              for (link <- panorama.links) {
-                if (!GSVLinkTable.linkExists(panorama.gsvPanoramaId, link.targetGsvPanoramaId)) {
-                  val gsvLink: GSVLink = GSVLink(panorama.gsvPanoramaId, link.targetGsvPanoramaId, link.yawDeg, "", link.description)
+              for (link <- pano.links) {
+                if (!GSVLinkTable.linkExists(pano.gsvPanoramaId, link.targetGsvPanoramaId)) {
+                  val gsvLink: GSVLink = GSVLink(pano.gsvPanoramaId, link.targetGsvPanoramaId, link.yawDeg, "", link.description)
                   GSVLinkTable.save(gsvLink)
                 }
               }
