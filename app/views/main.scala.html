@@ -1,4 +1,5 @@
 @import models.user.User
+@import models.user.VersionTable
 @import models.user.WebpageActivityTable
 @(title: String, url: Option[String] = Some("/"))(content: Html)
 
@@ -83,7 +84,12 @@
             <a href="https://makeabilitylab.umiacs.umd.edu/">Makeability Lab</a> at the
             <a href="http://www.umd.edu/">University of Maryland</a> and
                 <a href="http://www.uw.edu/" id="umd-link">University of Washington</a><br>
-            <span id="application-version"></span>
+            <span id="application-version">
+                Version @VersionTable.currentVersionId() | Last Updated:
+                <span class = "timestamp date">
+                @VersionTable.currentVersionTimestamp()
+                </span>
+            </span>
         </div>
     } else{
         <div class="filler" style="position:relative;top: 0px;background-color:#fff; min-height:50px;"></div>
@@ -137,7 +143,12 @@
             <a href="https://makeabilitylab.umiacs.umd.edu/" id="makeability-link">Makeability Lab</a> at the
             <a href="http://www.umd.edu/" id="umd-link">University of Maryland</a> and
             <a href="http://www.uw.edu/" id="umd-link">University of Washington</a><br>
-            <span id="application-version"></span>
+            <span id="application-version">
+                Version @VersionTable.currentVersionId() | Last Updated:
+                <span class = "timestamp date">
+                    @VersionTable.currentVersionTimestamp()
+                </span>
+            </span>
         </div>
 
     }
