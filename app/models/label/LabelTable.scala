@@ -6,6 +6,7 @@ import java.util.UUID
 import com.vividsolutions.jts.geom.LineString
 import models.audit.{AuditTask, AuditTaskEnvironmentTable, AuditTaskInteraction, AuditTaskTable}
 import models.daos.slick.DBTableDefinitions.UserTable
+import models.gsv.GSVDataTable
 import models.gsv.GSVOnboardingPanoTable
 import models.region.RegionTable
 import models.user.{RoleTable, UserRoleTable}
@@ -80,6 +81,7 @@ object LabelTable {
   val auditTasks = TableQuery[AuditTaskTable]
   val completedAudits = auditTasks.filter(_.completed === true)
   val auditTaskEnvironments = TableQuery[AuditTaskEnvironmentTable]
+  val gsvData = TableQuery[GSVDataTable]
   val labelTypes = TableQuery[LabelTypeTable]
   val labelPoints = TableQuery[LabelPointTable]
   val regions = TableQuery[RegionTable]
@@ -112,6 +114,11 @@ object LabelTable {
                            timestamp: Option[java.sql.Timestamp],
                            labelTypeKey:String, labelTypeValue: String, severity: Option[Int],
                            temporary: Boolean, description: Option[String])
+
+  case class LabelCVMetadata(labelId: Int, panoId: String, labelTypeId: Int, imageWidth: Option[Int],
+                             imageHeight: Option[Int], svImageX: Int, svImageY: Int, canvasWidth: Int,
+                             canvasHeight: Int, canvasX: Int, canvasY: Int, zoom: Int, heading: Float, pitch: Float,
+                             photographerHeading: Float, photographerPitch: Float)
 
   implicit val labelLocationConverter = GetResult[LabelLocation](r =>
     LabelLocation(r.nextInt, r.nextInt, r.nextString, r.nextString, r.nextFloat, r.nextFloat))
@@ -624,5 +631,21 @@ object LabelTable {
 
     // counts the number of tasks for each user
     turkerAudits.groupBy(l => l).map{ case (uid, group) => (uid, group.length)}.list
+  }
+
+  /**
+   * Get metadata used for 2022 CV project for all labels.
+   */
+  def getLabelCVMetadata: List[LabelCVMetadata] = db.withSession { implicit session =>
+    (for {
+      _l <- labelsWithoutDeletedOrOnboarding
+      _lp <- labelPoints if _l.labelId === _lp.labelId
+      _at <- auditTasks if _l.auditTaskId === _at.auditTaskId
+      _gsv <- gsvData if _l.gsvPanoramaId === _gsv.gsvPanoramaId
+    } yield (
+      _l.labelId, _gsv.gsvPanoramaId, _l.labelTypeId, _gsv.imageWidth, _gsv.imageHeight, _lp.svImageX, _lp.svImageY,
+      _lp.canvasWidth, _lp.canvasHeight, _lp.canvasX, _lp.canvasY, _lp.zoom, _lp.heading, _lp.pitch,
+      _l.photographerHeading, _l.photographerPitch
+    )).list.map(LabelCVMetadata.tupled)
   }
 }
