@@ -115,10 +115,10 @@ object LabelTable {
                            labelTypeKey:String, labelTypeValue: String, severity: Option[Int],
                            temporary: Boolean, description: Option[String])
 
-  case class LabelCVMetadata(labelId: Int, panoId: String, labelTypeId: Int, imageWidth: Option[Int],
-                             imageHeight: Option[Int], svImageX: Int, svImageY: Int, canvasWidth: Int,
-                             canvasHeight: Int, canvasX: Int, canvasY: Int, zoom: Int, heading: Float, pitch: Float,
-                             photographerHeading: Float, photographerPitch: Float)
+  case class LabelCVMetadata(labelId: Int, panoId: String, labelTypeId: Int, panoWidth: Option[Int],
+                             panoHeight: Option[Int], panoX: Int, panoY: Int, canvasWidth: Int, canvasHeight: Int,
+                             canvasX: Int, canvasY: Int, zoom: Int, heading: Float, pitch: Float, cameraHeading: Float,
+                             cameraPitch: Float)
 
   implicit val labelLocationConverter = GetResult[LabelLocation](r =>
     LabelLocation(r.nextInt, r.nextInt, r.nextString, r.nextString, r.nextFloat, r.nextFloat))

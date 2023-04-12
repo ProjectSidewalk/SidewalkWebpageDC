@@ -448,13 +448,14 @@ class AdminController @Inject() (implicit val env: Environment[User, SessionAuth
 
   // Get the list of pano IDs in our database.
   def getAllPanoIds() = UserAwareAction.async { implicit request =>
-    val panos: List[(String, Option[Int], Option[Int], Option[Int], Option[Int])] = GSVDataTable.getAllPanos()
-    val json: JsValue = Json.toJson(panos.map(p => Json.obj(
+    val json: JsValue = Json.toJson(GSVDataTable.getAllPanos().map(p => Json.obj(
       "gsv_panorama_id" -> p._1,
-      "image_width" -> p._2,
-      "image_height" -> p._3,
-      "tile_width" -> p._4,
-      "tile_height" -> p._5
+      "width" -> p._2,
+      "height" -> p._3,
+      "lat" -> p._4,
+      "lng" -> p._5,
+      "camera_heading" -> p._6,
+      "camera_pitch" -> p._7
     )))
     Future.successful(Ok(json))
   }
