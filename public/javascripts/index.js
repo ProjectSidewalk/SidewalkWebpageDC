@@ -1,15 +1,10 @@
-$(document).ready(function () {
+function LandingPage(mapboxAPIKey) {
 
-    L.mapbox.accessToken = 'pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA';
-    // var tileUrl = "https://a.tiles.mapbox.com/v4/kotarohara.mmoldjeh/page.html?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA#13/38.8998/-77.0638";
-    var tileUrl = "https:\/\/a.tiles.mapbox.com\/v4\/kotarohara.8e0c6890\/{z}\/{x}\/{y}.png?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA";
-    var mapboxTiles = L.tileLayer(tileUrl, {
-        attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-    });
+    L.mapbox.accessToken = mapboxAPIKey;
 
-    var map = L.mapbox.map('map', "mapbox.streets", {zoomControl: false})
-            // .addLayer(mapboxTiles)
-            .setView([38.910, -77.040], 17);
+    var map = L.mapbox.map('map', null, {zoomControl: false})
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
+        .setView([38.910, -77.040], 17);
 
     // Don't allow zooming (yet!)
     map.touchZoom.disable();
@@ -385,4 +380,4 @@ $(document).ready(function () {
     }
     var dotPlotVisualization = new DotPlotVisualization();
 
-});
+}

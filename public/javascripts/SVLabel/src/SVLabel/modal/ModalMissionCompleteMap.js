@@ -5,17 +5,14 @@ function ModalMissionCompleteMap(uiModalMissionComplete) {
     this._southWest = L.latLng(38.761, -77.262);
     this._northEast = L.latLng(39.060, -76.830);
     this._bound = L.latLngBounds(this._southWest, this._northEast);
-    this._map = L.mapbox.map(uiModalMissionComplete.map.get(0), "mapbox.streets", {
+    this._map = L.mapbox.map(uiModalMissionComplete.map.get(0), null, {
         maxBounds: this._bound,
         maxZoom: 19,
         minZoom: 10,
         style: 'mapbox://styles/projectsidewalk/civfm8qwi000l2iqo9ru4uhhj'
-    }).fitBounds(this._bound);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/projectsidewalk/civfm8qwi000l2iqo9ru4uhhj/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJvamVjdHNpZGV3YWxrIiwiYSI6ImNpdmZtODFobjAxcjEydHBkbmg0Y2F0MGgifQ.tDBFPXecLVjgJA0Z1LFhhw', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        accessToken: L.mapbox.accessToken
-    }).addTo(this._map);
+    })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
+        .fitBounds(this._bound);
 
     // these two are defined globaly so that they can be added in show and removed in hide
     this._overlayPolygon = null;

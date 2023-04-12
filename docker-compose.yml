@@ -16,6 +16,7 @@ services:
       - "9000:9000"
     environment:
       - DATABASE_URL=jdbc:postgresql://db:5432/sidewalk
+      - MAPBOX_API_KEY=DUMMY_MAPBOX_API_KEY
       - GOOGLE_MAPS_API_KEY=DUMMY_GOOGLE_API_KEY
       - GOOGLE_MAPS_SECRET=DUMMY_GOOGLE_SECRET
       - INTERNAL_API_KEY=DUMMY_INTERNAL_API_KEY

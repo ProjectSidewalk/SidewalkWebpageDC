@@ -1,4 +1,4 @@
-function Admin(_, $, c3, turf, difficultRegionIds) {
+function Admin(_, $, c3, turf, difficultRegionIds, mapboxAPIKey) {
     var self = {};
     var severityList = [1, 2, 3, 4, 5];
     self.markerLayer = null;
@@ -32,7 +32,7 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
 
     self.auditedStreetLayer = null;
 
-    L.mapbox.accessToken = 'pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA';
+    L.mapbox.accessToken = mapboxAPIKey;
 
     // Construct a bounding box for these maps that the user cannot move out of
     // https://www.mapbox.com/mapbox.js/example/v1.0.0/maxbounds/
@@ -45,7 +45,7 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
     var mapboxTiles = L.tileLayer(tileUrl, {
         attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
     });
-    var map = L.mapbox.map('admin-map', "mapbox.streets", {
+    var map = L.mapbox.map('admin-map', null, {
         // set that bounding box as maxBounds to restrict moving the map
         // see full maxBounds documentation:
         // http://leafletjs.com/reference.html#map-maxbounds
@@ -53,25 +53,27 @@ function Admin(_, $, c3, turf, difficultRegionIds) {
         maxZoom: 19,
         minZoom: 9
     })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
         .fitBounds(bounds)
         .setView([38.892, -77.038], 12);
 
     // a grayscale tileLayer for the choropleth
-    L.mapbox.accessToken = 'pk.eyJ1IjoibWlzYXVnc3RhZCIsImEiOiJjajN2dTV2Mm0wMDFsMndvMXJiZWcydDRvIn0.IXE8rQNF--HikYDjccA7Ug';
-    var choropleth = L.mapbox.map('admin-choropleth', "mapbox.light", {
-            // set that bounding box as maxBounds to restrict moving the map
-            // see full maxBounds documentation:
-            // http://leafletjs.com/reference.html#map-maxbounds
-            maxBounds: bounds,
-            maxZoom: 19,
-            minZoom: 9,
-            legendControl: {
-                position: 'bottomleft'
-            }
-        })
-            .fitBounds(bounds)
-            .setView([38.892, -77.038], 12);
-    choropleth.scrollWheelZoom.disable();
+    L.mapbox.accessToken = mapboxAPIKey;
+    var choropleth = L.mapbox.map('admin-choropleth', null, {
+        // set that bounding box as maxBounds to restrict moving the map
+        // see full maxBounds documentation:
+        // http://leafletjs.com/reference.html#map-maxbounds
+        maxBounds: bounds,
+        maxZoom: 19,
+        minZoom: 9,
+        scrollWheelZoom: false,
+        legendControl: {
+            position: 'bottomleft'
+        }
+    })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'))
+        .fitBounds(bounds)
+        .setView([38.892, -77.038], 12);
 
     var popup = L.popup().setContent('<p>Hello world!<br />This is a nice popup.</p>');
 

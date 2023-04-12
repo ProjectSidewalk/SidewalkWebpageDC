@@ -1,4 +1,4 @@
-function AccessibilityChoropleth(_, $, turf, difficultRegionIds) {
+function AccessibilityChoropleth(_, $, turf, difficultRegionIds, mapboxAPIKey) {
     var neighborhoodPolygonLayer;
 
 // Construct a bounding box for these maps that the user cannot move out of
@@ -7,12 +7,6 @@ function AccessibilityChoropleth(_, $, turf, difficultRegionIds) {
     var northEast = L.latLng(39.060, -76.830);
     var bounds = L.latLngBounds(southWest, northEast);
 
-// var tileUrl = "https://a.tiles.mapbox.com/v4/kotarohara.mmoldjeh/page.html?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA#13/38.8998/-77.0638";
-    var tileUrl = "https:\/\/a.tiles.mapbox.com\/v4\/kotarohara.8e0c6890\/{z}\/{x}\/{y}.png?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA";
-    var mapboxTiles = L.tileLayer(tileUrl, {
-        attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-    });
-
     var labelText = {
         "NoSidewalk":"Missing Sidewalks",
         "NoCurbRamp": "Missing Curb Ramps",
@@ -20,9 +14,9 @@ function AccessibilityChoropleth(_, $, turf, difficultRegionIds) {
         "Obstacle": "Obstacles",
     };
 
-// a grayscale tileLayer for the choropleth
-    L.mapbox.accessToken = 'pk.eyJ1IjoibWlzYXVnc3RhZCIsImEiOiJjajN2dTV2Mm0wMDFsMndvMXJiZWcydDRvIn0.IXE8rQNF--HikYDjccA7Ug';
-    var choropleth = L.mapbox.map('choropleth', "mapbox.light", {
+    // a grayscale tileLayer for the choropleth
+    L.mapbox.accessToken = mapboxAPIKey;
+    var choropleth = L.mapbox.map('choropleth', null, {
         // set that bounding box as maxBounds to restrict moving the map
         // see full maxBounds documentation:
         // http://leafletjs.com/reference.html#map-maxbounds
@@ -30,10 +24,12 @@ function AccessibilityChoropleth(_, $, turf, difficultRegionIds) {
         maxZoom: 19,
         minZoom: 9,
         zoomControl: false,
+        scrollWheelZoom: false,
         legendControl: {
             position: 'topright'
         }
     })
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'))
         .fitBounds(bounds)
         .setView([38.892, -77.038], 12);
     choropleth.scrollWheelZoom.disable();

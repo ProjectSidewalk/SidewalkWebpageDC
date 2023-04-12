@@ -1,4 +1,6 @@
 @import models.user.User
+@import play.api.Play
+@import play.api.Play.current
 @(title: String, user: Option[User] = None)
 
 @main(title) {
@@ -70,4 +72,9 @@
     @*<script type="text/javascript" src='@routes.Assets.at("javascripts/lib/bootstrap-3.3.5/js/bootstrap-slider.min.js")'></script>*@
     @*<link href='@routes.Assets.at("javascripts/lib/bootstrap-3.3.5/css/bootstrap-slider.min.css")' rel="stylesheet"/>*@
     <link href='@routes.Assets.at("stylesheets/accessScoreDemo.css")' rel="stylesheet"/>
+    <script>
+        $(document).ready(function () {
+            AccessScoreDemo('@Play.configuration.getString("mapbox-api-key").get');
+        });
+    </script>
 }

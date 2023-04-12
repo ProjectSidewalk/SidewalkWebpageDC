@@ -4,6 +4,8 @@
 @import models.audit.AuditTaskTable
 @import models.label.LabelTable
 @import models.mission.MissionTable
+@import play.api.Play
+@import play.api.Play.current
 
 @import java.util.UUID
 @import models.user.UserCurrentRegionTable
@@ -191,10 +193,13 @@
     <script type="text/javascript" src='@routes.Assets.at("javascripts/Admin/build/Admin.js")'></script>
     <script type="text/javascript" src='@routes.Assets.at("javascripts/SVLabel/src/SVLabel/util/UtilitiesSidewalk.js")'></script>
     <script type="text/javascript" src='@routes.Assets.at("javascripts/SVLabel/src/SVLabel/util/UtilitiesColor.js")'></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <script>
             $(document).ready(function () {
                 var username = '@user.get.username';
-                window.admin = AdminUser({username: username});
+                var mapboxAPIKey = '@Play.configuration.getString("mapbox-api-key").get';
+                window.admin = AdminUser({ username: username, mapboxAPIKey: mapboxAPIKey });
                 $('#labelTable').dataTable();
             });
     </script>

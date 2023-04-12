@@ -10,6 +10,8 @@
 @import models.audit.AuditTaskCommentTable
 @import java.util.UUID
 @import play.api.libs.json.Json
+@import play.api.Play
+@import play.api.Play.current
 
 @(title: String, user: Option[User] = None)
 @main(title) {
@@ -696,7 +698,8 @@
         $(document).ready(function () {
 
         var difficultRegionIds = @Json.toJson(RegionTable.difficultRegionIds);
-        window.admin = Admin(_, $, c3, turf, difficultRegionIds);
+        var mapboxAPIKey = '@Play.configuration.getString("mapbox-api-key").get'
+        window.admin = Admin(_, $, c3, turf, difficultRegionIds, mapboxAPIKey);
         $('#commentsTable').dataTable();
         $('#labelTable').dataTable();
         $('#userTable').dataTable();
