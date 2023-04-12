@@ -1,19 +1,19 @@
 var neighborhoodPolygonLayer;
-
-$(document).ready(function () {
-    L.mapbox.accessToken = 'pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA';
+function AccessScoreDemo(mapboxAPIKey) {
+    L.mapbox.accessToken = mapboxAPIKey;
 
     // Construct a bounding box for this map that the user cannot move out of
     // https://www.mapbox.com/mapbox.js/example/v1.0.0/maxbounds/
     var southWest = L.latLng(38.761, -77.262),
         northEast = L.latLng(39.060, -76.830),
         bounds = L.latLngBounds(southWest, northEast),
-        tileUrl = "https:\/\/a.tiles.mapbox.com\/v4\/kotarohara.8e0c6890\/{z}\/{x}\/{y}.png?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA",
-        map = L.mapbox.map('map', "mapbox.streets", {
-                maxBounds: bounds,
-                maxZoom: 19,
-                minZoom: 9
-        }).fitBounds(bounds).setView([38.892, -77.038], 12);
+        map = L.mapbox.map('map', null, {
+            maxBounds: bounds,
+            maxZoom: 19,
+            minZoom: 9
+        })
+            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
+            .fitBounds(bounds).setView([38.892, -77.038], 12);
         // popup = L.popup().setContent('');
 
     initializeNeighborhoodPolygons(map);
@@ -61,7 +61,7 @@ $(document).ready(function () {
         });
         updateAccessScore(significance);
     });
-});
+}
 
 // Access score color
 function getColor(d) {

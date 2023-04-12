@@ -1,4 +1,6 @@
 @import models.user.User
+@import play.api.Play
+@import play.api.Play.current
 @(title: String, user: Option[User] = None)
 
 @main(title) {
@@ -354,4 +356,9 @@
 
     <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <script>
+        $(document).ready(function () {
+            APIMaps('@Play.configuration.getString("mapbox-api-key").get');
+        });
+    </script>
 }

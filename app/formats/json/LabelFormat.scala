@@ -38,10 +38,10 @@ object LabelFormats {
     (__ \ "label_id").write[Int] and
       (__ \ "gsv_panorama_id").write[String] and
       (__ \ "label_type_id").write[Int] and
-      (__ \ "image_width").writeNullable[Int] and
-      (__ \ "image_height").writeNullable[Int] and
-      (__ \ "sv_image_x").write[Int] and
-      (__ \ "sv_image_y").write[Int] and
+      (__ \ "pano_width").writeNullable[Int] and
+      (__ \ "pano_height").writeNullable[Int] and
+      (__ \ "pano_x").write[Int] and
+      (__ \ "pano_y").write[Int] and
       (__ \ "canvas_width").write[Int] and
       (__ \ "canvas_height").write[Int] and
       (__ \ "canvas_x").write[Int] and
@@ -49,7 +49,7 @@ object LabelFormats {
       (__ \ "zoom").write[Int] and
       (__ \ "heading").write[Float] and
       (__ \ "pitch").write[Float] and
-      (__ \ "photographer_heading").write[Float] and
-      (__ \ "photographer_pitch").write[Float]
+      (__ \ "camera_heading").write[Float] and
+      (__ \ "camera_pitch").write[Float]
     )(unlift(LabelTable.LabelCVMetadata.unapply _))
 }

@@ -1,5 +1,7 @@
 @import models.user.User
 @import models.audit.AuditTask
+@import play.api.Play
+@import play.api.Play.current
 @(title: String, admin: Option[User] = None, task: AuditTask)
 
 @main(title) {
@@ -34,10 +36,10 @@
     <script>
             $(document).ready(function () {
                 var auditTaskId = @task.auditTaskId;
-                window.admin = AdminTask({auditTaskId: auditTaskId});
+                window.admin = AdminTask({
+                    auditTaskId: auditTaskId,
+                    mapboxApiKey: '@Play.configuration.getString("mapbox-api-key").get'
+                });
             });
     </script>
-
-
-
 }

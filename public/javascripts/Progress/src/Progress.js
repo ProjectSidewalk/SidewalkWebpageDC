@@ -1,4 +1,4 @@
-function Progress (_, $, c3, L, difficultRegionIds) {
+function Progress (_, $, c3, L, difficultRegionIds, mapboxAPIKey) {
     var self = {};
     var completedInitializingOverlayPolygon = false,
         completedInitializingNeighborhoodPolygons = false,
@@ -26,7 +26,7 @@ function Progress (_, $, c3, L, difficultRegionIds) {
         interactions: null
     };
 
-    L.mapbox.accessToken = 'pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA';
+    L.mapbox.accessToken = mapboxAPIKey;
 
     // Construct a bounding box for this map that the user cannot move out of
     // https://www.mapbox.com/mapbox.js/example/v1.0.0/maxbounds/
@@ -34,12 +34,7 @@ function Progress (_, $, c3, L, difficultRegionIds) {
         northEast = L.latLng(39.060, -76.830),
         bounds = L.latLngBounds(southWest, northEast),
 
-    // var tileUrl = "https://a.tiles.mapbox.com/v4/kotarohara.mmoldjeh/page.html?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA#13/38.8998/-77.0638";
-        tileUrl = "https:\/\/a.tiles.mapbox.com\/v4\/kotarohara.8e0c6890\/{z}\/{x}\/{y}.png?access_token=pk.eyJ1Ijoia290YXJvaGFyYSIsImEiOiJDdmJnOW1FIn0.kJV65G6eNXs4ATjWCtkEmA",
-        mapboxTiles = L.tileLayer(tileUrl, {
-            attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-        }),
-        map = L.mapbox.map('map', "mapbox.streets", {
+        map = L.mapbox.map('map', null, {
             // set that bounding box as maxBounds to restrict moving the map
             // see full maxBounds documentation:
             // http://leafletjs.com/reference.html#map-maxbounds
@@ -47,7 +42,7 @@ function Progress (_, $, c3, L, difficultRegionIds) {
             maxZoom: 19,
             minZoom: 9
         })
-        // .addLayer(mapboxTiles)
+            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
             .fitBounds(bounds)
             .setView([38.892, -77.038], 12);
 

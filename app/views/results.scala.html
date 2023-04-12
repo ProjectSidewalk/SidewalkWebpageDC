@@ -5,6 +5,8 @@
 @import models.label._
 @import models.street.StreetEdgeTable
 @import play.api.libs.json.Json
+@import play.api.Play
+@import play.api.Play.current
 @(title: String, user: Option[User] = None)
 
 @main(title) {
@@ -89,7 +91,8 @@
 <script>
         $(document).ready(function () {
             var difficultRegionIds = @Json.toJson(RegionTable.difficultRegionIds);
-            window.choropleth = AccessibilityChoropleth(_, $, turf, difficultRegionIds);
+            var mapboxAPIKey = '@Play.configuration.getString("mapbox-api-key").get';
+            window.choropleth = AccessibilityChoropleth(_, $, turf, difficultRegionIds, mapboxAPIKey);
         });
 </script>
 }
